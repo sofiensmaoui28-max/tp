@@ -1,38 +1,26 @@
-class Testcompte {
-    public static void main(String[] args) {
-
-        Compte c1 = new Compte();
-        Compte c2 = new Compte();
-
-        c1.deposer(500);
-        c2.deposer(1000);
-        c2.retirer(10);
-        c2.virerVers(70, c1);
-
-        System.out.println("Solde du premier compte : ");
-        c1.affiche();
-
-        System.out.println("Solde du second compte : ");
-        c2.affiche();
+class Segment {
+    int extr1;
+    int extr2;
 
 
-        Compte[] comptes = new Compte[10];
+    public Segment(int e1, int e2) {
+        this.extr1 = e1;
+        this.extr2 = e2;
+    }
 
-        for (int i = 0; i < comptes.length; i++) {
-            comptes[i] = new Compte();
-        }
 
-        for (int i = 0; i < comptes.length; i++) {
-            comptes[i].deposer(10 * i);
-        }
+    public int longueur() {
+        return Math.abs(extr2 - extr1);
+    }
 
-        for (int i = 1; i < comptes.length; i++) {
-            comptes[0].virerVers(20, comptes[i]);
-        }
 
-        for (int i = 0; i < comptes.length; i++) {
-            System.out.print("Compte " + i + " : ");
-            comptes[i].affiche();
-        }
+    public boolean appartient(int point) {
+        int min = Math.min(extr1, extr2);
+        int max = Math.max(extr1, extr2);
+        return point >= min && point <= max;
+    }
+
+    public String toString() {
+        return "segment (" + Math.min(extr1, extr2) + ", " + Math.max(extr1, extr2) + ")";
     }
 }
